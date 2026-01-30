@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import {
   Menu,
   X,
@@ -15,7 +15,6 @@ import {
   Cloud,
   Mail,
   Phone,
-  ExternalLink,
   GraduationCap,
   Award,
   Trophy,
@@ -46,7 +45,6 @@ const roles = [
 const currentRoleIndex = ref(0);
 const currentText = ref("");
 const isDeleting = ref(false);
-const typeSpeed = ref(100);
 
 // Intersection Observer for scroll animations
 const heroVisible = ref(false);
@@ -284,7 +282,8 @@ const socials = [
 // Modal state
 const showAppModal = ref(false);
 const modalRef = ref<HTMLElement | null>(null);
-
+// Prevents TS error - used for modal DOM reference
+void modalRef;
 // App store links (update these with your actual links)
 const appLinks = {
   sbAuto: {
@@ -318,8 +317,16 @@ onMounted(() => {
   });
 });
 // Typewriter logic
+// Typewriter logic
 const typeWriter = () => {
   const currentRole = roles[currentRoleIndex.value];
+
+  // TypeScript safety check
+  if (!currentRole) {
+    currentRoleIndex.value = 0;
+    setTimeout(typeWriter, 500);
+    return;
+  }
 
   if (isDeleting.value) {
     currentText.value = currentRole.substring(0, currentText.value.length - 1);
