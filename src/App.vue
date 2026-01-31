@@ -228,14 +228,14 @@ const projects = [
     link: "#",
   },
   {
-    title: "IoT Control Dashboard",
+    title: "IoT Admin Dashboard",
     description:
       "Angular-based web dashboard for monitoring and controlling IoT devices. Features real-time data visualization, device grouping, and automation rule configuration.",
     tech: ["Angular", "TypeScript", "RxJS", "WebSockets"],
     gradient: "from-pink-600 to-orange-600",
     tag: "Web Platform",
     icon: Layout,
-    link: "#",
+    link: "https://www.smartbuildauto.com/",
   },
   {
     title: "E-Commerce Platform",
@@ -245,7 +245,7 @@ const projects = [
     gradient: "from-green-600 to-teal-600",
     tag: "Full Stack",
     icon: ShoppingBag,
-    link: "#",
+    link: "https://github.com/Abhishek-poojary1/EcommerceApplication",
   },
 ];
 
