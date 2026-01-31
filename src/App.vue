@@ -23,15 +23,13 @@ import {
   Home,
   ShoppingBag,
 } from "lucide-vue-next";
-
-// Navigation
 const navItems = [
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
 ];
-
+import profileImage from "./assets/profile.jpg";
 const mobileMenuOpen = ref(false);
 const scrolled = ref(false);
 
@@ -426,20 +424,51 @@ onUnmounted(() => {
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
-          <div
-            class="font-display font-bold text-xl gradient-text cursor-pointer hover:scale-110 transition-transform"
-            @click="scrollToTop"
-          >
-            AP.
+          <div class="relative group cursor-pointer" @click="scrollToTop">
+            <!-- Animated rotating gradient border -->
+            <div
+              class="absolute -inset-1 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200 animate-spin-slow"
+            ></div>
+
+            <!-- Main container with 3D tilt effect -->
+            <div
+              class="relative h-12 w-12 rounded-full overflow-hidden transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 border-2 border-white/10 group-hover:border-white/30 shadow-lg group-hover:shadow-purple-500/50"
+            >
+              <!-- Your image -->
+              <img
+                :src="profileImage"
+                alt="Abhishek"
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-125"
+              />
+
+              <!-- Overlay gradient on hover -->
+              <div
+                class="absolute inset-0 bg-gradient-to-tr from-purple-500/0 via-transparent to-blue-500/0 group-hover:from-purple-500/20 group-hover:to-blue-500/20 transition-all duration-300"
+              ></div>
+
+              <!-- Initials badge that appears on hover -->
+              <div
+                class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              >
+                <span class="text-xs font-bold text-white drop-shadow-lg"
+                  >AP</span
+                >
+              </div>
+            </div>
+
+            <!-- Floating particles around the image -->
+            <div
+              class="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-dark animate-pulse"
+            ></div>
           </div>
 
-          <div class="hidden md:flex space-x-8">
+          <div class="hidden md:flex items-center space-x-8">
             <a
               v-for="item in navItems"
               :key="item.id"
               @click.prevent="scrollToSection(item.id)"
               href="#"
-              class="text-gray-300 hover:text-white transition-colors text-sm font-medium relative group"
+              class="text-gray-300 hover:text-white transition-colors text-sm font-medium relative group py-2"
             >
               {{ item.label }}
               <span
