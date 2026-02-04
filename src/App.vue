@@ -55,8 +55,8 @@ const contactVisible = ref(false);
 // Stats
 const stats = [
   { value: "2+", label: "Years Exp" },
-  { value: "3+", label: "AI Models" },
-  { value: "40%", label: "Performance Gain" },
+  { value: "4+", label: "Apps Deployed" },
+  { value: "40%", label: "System Optimization" },
 ];
 
 // About tags
